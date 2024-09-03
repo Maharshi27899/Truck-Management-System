@@ -9,7 +9,7 @@ import java.util.List;
 
 public class TruckService {
     public void addTruck(Truck truck){
-        String sql = "insert into truck (name,model,capacity,driver_name) values (?,?,?,?)";
+        String sql = "insert into truck(name,model,capacity,driver_name) values (?,?,?,?)";
         try{
             Connection con = ConnectionDetails.getConnection();
             PreparedStatement pst = con.prepareStatement(sql);
