@@ -27,6 +27,8 @@ public class App
         service.addTruck(truck4);
         service.addTruck(truck5);
 
+        // Hello Sandeep how are you
+
 //        Truck truck = service.getTruckByID(1);
 //        System.out.println("Truck Data : "+ truck);
 //
