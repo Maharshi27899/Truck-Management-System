@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TruckService {
-    public void addTruck(Truck truck){
+    public String addTruck(Truck truck){
+        String status = null;
         String sql = "insert into truck(name,model,capacity,driver_name) values (?,?,?,?)";
         try{
             Connection con = ConnectionDetails.getConnection();
@@ -19,10 +20,11 @@ public class TruckService {
             pst.setString(4,truck.getDriver_name());
 
             int rowsAffected = pst.executeUpdate();
-            System.out.println("Rows Inserted : "+rowsAffected);
+            status = "Rows Inserted : "+rowsAffected;
         }catch (Exception e){
             e.printStackTrace();
         }
+        return status;
     }
 
     public Truck getTruckByID(int id){
@@ -103,5 +105,26 @@ public class TruckService {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+    
+    public boolean alreadyExist(Truck truck){
+        String sql = "select * from truck";
+        boolean bool = true;
+        try{
+            Connection con = ConnectionDetails.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                if(rs.getString("name").equals(truck.getName())){
+                    bool = true;
+                }
+                else{
+                    bool = false;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return bool;
     }
 }
