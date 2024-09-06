@@ -19,12 +19,19 @@ public class Controller
 
 
 
-//        Truck truck1 = new Truck("Eicher 19","2011",7000,"Shivam");
-//        Truck truck2 = new Truck("TATA 22","2013",10000,"Amit");
-//        Truck truck3 = new Truck("Tauras 16T","2014",16000,"Abhishek");
-//        Truck truck4 = new Truck("Container","2012",7000,"Anshul");
-//        Truck truck5 = new Truck("Eicher 407","2010",9000,"Yuvraj");
-//        Truck truck6 = new Truck("Eicher 407","2010",9000,"Yuvraj");
+        Truck truck1 = new Truck("Eicher 19","2011",7000,"Shivam");
+        Truck truck2 = new Truck("TATA 22","2013",10000,"Amit");
+        Truck truck3 = new Truck("Tauras 16T","2014",16000,"Abhishek");
+        Truck truck4 = new Truck("Container","2012",7000,"Anshul");
+        Truck truck5 = new Truck("Eicher 407","2010",9000,"Yuvraj");
+        Truck truck6 = new Truck("Eicher 407","2010",9000,"Yuvraj");
+
+        service.addTruck(truck1);
+        service.addTruck(truck2);
+        service.addTruck(truck3);
+        service.addTruck(truck4);
+        service.addTruck(truck5);
+        service.addTruck(truck6);
 
 
         try{
@@ -81,6 +88,51 @@ public class Controller
                             System.out.println("Truck Driver Name : "+truck.getName());
                         }
                         break;
+
+                    case 4://update truck
+                        System.out.println("Enter Truck ID : ");
+                        tid = Integer.parseInt(br.readLine());
+//                        truck = truckService.getTruckByID(tid);
+
+                        if(truck == null){
+                            System.out.println("Status : Truck Not Existed !!!");
+                        }else{
+//						First show the existing data and then give option to modify
+//						if user not interested to change the name press enter and continue
+                        System.out.println("Enter New Truck Name [Old Name :"+truck.getName()+" ] : ");
+                        String tname_New = br.readLine();
+                        if(tname_New == null || tname_New.equals("")){
+                            tname_New = truck.getName();
+                        }
+
+                        System.out.println("Enter New Truck Model [Old Model : "+truck.getModel()+" ] : ");
+                        String tmodel_New = br.readLine();
+                        if(tmodel_New == null || tmodel_New.equals("")){
+                            tmodel_New = truck.getModel();
+                        }
+
+                        System.out.println("Enter New Truck Capacity [Old Capacity : "+truck.getCapacity()+" ]: ");
+                        int tcapacity_New = Integer.parseInt(br.readLine());
+                        if(tcapacity_New == 0){
+                            tcapacity_New = truck.getCapacity();
+                        }
+
+                        System.out.println("Enter New Truck Driver Name [Old Truck Driver Name : "+truck.getDriver_name()+" ] : ");
+                        String tdriver_name_New = br.readLine();
+                        if(tdriver_name_New == "" || tdriver_name_New.equals("")){
+                            tdriver_name_New = truck.getDriver_name();
+                        }
+                    }
+                        System.out.println("Status : Successfully Updated !!!");
+                        break;
+
+                    case 6 :
+                        System.out.println("Thank You For Providing This Application !!!");
+                        System.exit(0);
+
+                    default:
+                        break;
+
                 }
             }
 
